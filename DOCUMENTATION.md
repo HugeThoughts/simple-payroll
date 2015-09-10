@@ -17,8 +17,8 @@ Just write Markdown and see what it looks like as you type. And convert it to HT
 | emp_no          | emp_no    | emp_no     |
 | email           | name      | month      |
 | password_digest | PAN       | year       |
-| isAdmin         | DOJ       | basic      |
-|                 |           | conveyance |
+| 	              | DOJ       | basic      |
+|                 | isAdmin   | conveyance |
 |                 |           | medical    |
 |                 |           | hra        |
 |                 |           | bonus      |
@@ -28,3 +28,35 @@ Just write Markdown and see what it looks like as you type. And convert it to HT
 |                 |           | loan       |
 |                 |           | advance    |
 |                 |           | tds        |
+
+Markdown table generated using [ASCII Tables](http://ozh.github.io/ascii-tables/)
+
+### Code WorkFlow
+
+#### 1. Authentication
+
+For user authentication I'm using [Devise](https://github.com/plataformatec/devise) gem instead of writing everything from scratch.
+
+- Add ```gem 'devise'``` in Gemfile
+
+- Run ```rails generate devise:install``` to install Devise Generator
+
+- It'll require us to do some manual things (Is it really required ?)
+
+	1. Add it in config/environments/development.rb
+
+		```config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }```
+
+	2. Set root_url in config/routes.rb
+
+	3. Ensure you have flash messages in **application.html.erb**
+		```html
+
+       <p class="notice"><%= notice %></p>
+
+       <p class="alert"><%= alert %></p>
+
+		```
+- Run ```rails generate devise User``` and ```rake db:migrate``` 
+
+- To generate views for authentication pages ````rails generate devise:views````
