@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  get 'home/index'
+
+
+  get 'payslips/index'
+
+  get 'payslips/show'
+
   # resources :devise
   devise_scope :user do
     get "login", to: "devise/sessions#new"
@@ -14,7 +19,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+  root 'payslips#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

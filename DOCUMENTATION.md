@@ -60,3 +60,19 @@ For user authentication I'm using [Devise](https://github.com/plataformatec/devi
 - Run ```rails generate devise User``` and ```rake db:migrate``` 
 
 - To generate views for authentication pages ````rails generate devise:views````
+
+- Reference [SitePoint](http://www.sitepoint.com/devise-authentication-in-depth/) and 
+[Devise Docs](https://github.com/plataformatec/devise/#configuring-views)
+to config **Devise Routes** properly.
+- Reference [RubyDoc](http://www.rubydoc.info/github/plataformatec/devise/)
+to config **Devise Controller** properly.
+
+
+#### 2. PaySlip Controller & Model 
+
+-	Rails generator controller without tests, assets & helpers refer [Rails Skip Gist](https://gist.github.com/AshikNesin/52eb7e5e725ee4a6f2c0)
+
+-	Run ``` rails g controller payslips index show``` to generate controller & view
+- 	And to create **model**
+ 
+	```rails g model emp_no:integer month:integer year:integer basic:float conveyance:float medical:float hra:float bonus:float lta:float fuel:float mobile:float loan:float advance:float tds:float```
