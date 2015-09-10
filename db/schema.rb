@@ -11,7 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910094320) do
+ActiveRecord::Schema.define(version: 20150910120659) do
+
+  create_table "employees", force: :cascade do |t|
+    t.integer  "emp_no",     limit: 4,                   null: false
+    t.string   "email",      limit: 255,                 null: false
+    t.string   "name",       limit: 255,                 null: false
+    t.string   "PAN",        limit: 255
+    t.date     "DOJ"
+    t.boolean  "isAdmin",                default: false, null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+  end
+
+  create_table "payslips", force: :cascade do |t|
+    t.integer  "emp_no",     limit: 4,  null: false
+    t.integer  "month",      limit: 4,  null: false
+    t.integer  "year",       limit: 4,  null: false
+    t.float    "basic",      limit: 24
+    t.float    "conveyance", limit: 24
+    t.float    "medical",    limit: 24
+    t.float    "hra",        limit: 24
+    t.float    "bonus",      limit: 24
+    t.float    "lta",        limit: 24
+    t.float    "fuel",       limit: 24
+    t.float    "mobile",     limit: 24
+    t.float    "loan",       limit: 24
+    t.float    "advance",    limit: 24
+    t.float    "tds",        limit: 24
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false

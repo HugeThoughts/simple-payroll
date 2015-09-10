@@ -12,22 +12,22 @@ Just write Markdown and see what it looks like as you type. And convert it to HT
 
 ### Database Structure
 
-|      Users      | Employees |  Payslips  |
-|-----------------|-----------|------------|
-| emp_no          | emp_no    | emp_no     |
-| email           | name      | month      |
-| password_digest | PAN       | year       |
-| 	              | DOJ       | basic      |
-|                 | isAdmin   | conveyance |
-|                 |           | medical    |
-|                 |           | hra        |
-|                 |           | bonus      |
-|                 |           | lta        |
-|                 |           | fuel       |
-|                 |           | mobile     |
-|                 |           | loan       |
-|                 |           | advance    |
-|                 |           | tds        |
+| Employees |  Payslips  |
+|-----------|------------|
+| emp_no    | emp_no     |
+| name      | month      |
+| PAN       | year       |
+| DOJ       | basic      |
+| email  	| conveyance |
+| isAdmin   | medical    |
+|           | hra        |
+|           | bonus      |
+|           | lta        |
+|           | fuel       |
+|           | mobile     |
+|           | loan       |
+|           | advance    |
+|           | tds        |
 
 Markdown table generated using [ASCII Tables](http://ozh.github.io/ascii-tables/)
 
@@ -68,11 +68,18 @@ to config **Devise Routes** properly.
 to config **Devise Controller** properly.
 
 
-#### 2. PaySlip Controller & Model 
+#### 2. PaySlip & Employee Model & Controller 
 
 -	Rails generator controller without tests, assets & helpers refer [Rails Skip Gist](https://gist.github.com/AshikNesin/52eb7e5e725ee4a6f2c0)
 
 -	Run ``` rails g controller payslips index show``` to generate controller & view
-- 	And to create **model**
+- 	To create **model** for payslips
  
-	```rails g model emp_no:integer month:integer year:integer basic:float conveyance:float medical:float hra:float bonus:float lta:float fuel:float mobile:float loan:float advance:float tds:float```
+	```rails g model payslip emp_no:integer month:integer year:integer basic:float conveyance:float medical:float hra:float bonus:float lta:float fuel:float mobile:float loan:float advance:float tds:float```
+
+- 	To create **model** for employees
+ 
+	```rails g model employee emp_no:integer name PAN DOJ:date email isAdmin:boolean```
+-	Make sure to set **unique, default & null** for those model in those migrate files.
+
+	
