@@ -1,3 +1,76 @@
-<h1>Payslips#show</h1>
-<p>Find me in app/views/payslips/show.html.erb</p>
-hello <%= session[:email] %>
+
+<p>
+  <strong>Emp no:</strong>
+  <%= @payslip.emp_no %>
+</p>
+
+<p>
+  <strong>Month:</strong>
+  <%= @payslip.month %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @payslip.year %>
+</p>
+
+<p>
+  <strong>Basic:</strong>
+  <%= @payslip.basic %>
+</p>
+
+<p>
+  <strong>Conveyance:</strong>
+  <%= @payslip.conveyance %>
+</p>
+
+<p>
+  <strong>Medical:</strong>
+  <%= @payslip.medical %>
+</p>
+
+<p>
+  <strong>Hra:</strong>
+  <%= @payslip.hra %>
+</p>
+
+<p>
+  <strong>Bonus:</strong>
+  <%= @payslip.bonus %>
+</p>
+
+<p>
+  <strong>Lta:</strong>
+  <%= @payslip.lta %>
+</p>
+
+<p>
+  <strong>Fuel:</strong>
+  <%= @payslip.fuel %>
+</p>
+
+<p>
+  <strong>Mobile:</strong>
+  <%= @payslip.mobile %>
+</p>
+
+<p>
+  <strong>Loan:</strong>
+  <%= @payslip.loan %>
+</p>
+
+<p>
+  <strong>Advance:</strong>
+  <%= @payslip.advance %>
+</p>
+
+<p>
+  <strong>Tds:</strong>
+  <%= @payslip.tds %>
+</p>
+
+
+<p>
+  <h3>Total:</h3>
+  <%= @payslip_total %>
+</p>

@@ -80,6 +80,8 @@ to config **Devise Controller** properly.
 - 	To create **model** for employees
  
 	```rails g model employee emp_no:integer name PAN DOJ:date email isAdmin:boolean```
--	Make sure to set **unique, default & null** for those model in those migrate files.
+-	Make sure to set **unique, default & null** for those model in migrate files.
+
+
 
 	

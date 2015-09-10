@@ -1,3 +1,18 @@
-<h1>Payslips#index</h1>
-<p>Find me in app/views/payslips/index.html.erb</p>
-hello <%= session[:email] %>
+<p>Select Month And Year to View PaySlip </p>
+  <% #if flash[:payslip_error] %>
+    <div class="notice"><%= flash[:payslip_error] %></div>
+  <% #end %>
+<%= form_for :show_payslip  do |f| %>
+            <p>
+                        <%= f.label :Month %><br>
+                        <%= f.select :month, options_for_select([["January", "1"], ["February", "2"], ["March", "3"],["April", "4"], ["May", "5"], ["June", "6"], ["July", "7"], ["August", "8"], ["September", "9"], ["October", "10"], ["November", "11"], ["December", "12"]]) %>
+
+            </p>
+            <p>
+                        <%= f.label :Year %><br>
+                        <%= f.select :year, options_for_select([["2015", "2015"]]) %>
+            </p>
+            <p>
+                        <%= f.submit 'Show PaySlip' %>
+            </p>
+<% end %>
