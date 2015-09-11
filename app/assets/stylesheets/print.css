@@ -1,4 +1,10 @@
 @media print {
+	/* source http://stackoverflow.com/questions/585254/how-to-remove-the-url-from-the-printing-page */
+	@page 
+    {
+        size: auto;   /* auto is the initial value */
+        margin: 0mm;  /* this affects the margin in the printer settings */
+    }
   div.info, div#editStuff, div#navigation, div#debug {
     display: none;
   }
