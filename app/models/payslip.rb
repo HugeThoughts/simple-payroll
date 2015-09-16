@@ -1,17 +1,18 @@
 class Payslip < ActiveRecord::Base
+  belongs_to :employee
   require 'csv'
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
 
-      product_hash = row.to_hash # exclude the price field
-      product = Payslip.where(id: product_hash["id"])
+      payslip_hash = row.to_hash # exclude the price field
+      payslip = Payslip.where(id: payslip_hash["id"])
 
-      if product.count == 1
-        product.first.update_attributes(product_hash)
+      if payslip.count == 1
+        payslip.first.update_attributes(payslip_hash)
       else
-        Payslip.create!(product_hash)
-      end # end if !product.nil?
+        Payslip.create!(payslip_hash)
+      end # end if !payslip.nil?
     end # end CSV.foreach
   end # end self.import(file)
 end # end class

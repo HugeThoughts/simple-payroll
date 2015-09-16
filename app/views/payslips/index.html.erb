@@ -30,12 +30,6 @@
 
 <% if @isAdmin %>
 
-    <div>
-    <h3>Import a CSV File</h3>
-      <%= form_tag import_payslips_path, multipart: true do %>
-        <%= file_field_tag :file %>
-        <%= submit_tag "Import CSV" %>
-      <% end %>
-    </div>
+<%= button_to "Import PaySlip", payslips_import_path, :class => "button", :method => :get  %>
 
 <% end %>

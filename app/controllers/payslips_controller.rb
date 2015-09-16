@@ -10,7 +10,6 @@ class PayslipsController < ApplicationController
      emp = Employee.where(:email=>current_user.email).first
      @isAdmin=emp.isAdmin
      @currentEmpNo=emp.emp_no
-     #render json: @emp_no.inspect  
    	end 
   end
 
@@ -26,13 +25,9 @@ class PayslipsController < ApplicationController
 
   def payslip
 
-
-  	# render :json=> show_year
-  	# return 
   	@payslip_count = Payslip.where("emp_no = ? AND month = ? AND year = ?",session[:show_emp_no],session[:show_month],session[:show_year]).first
   	
   	if @payslip_count.blank?
-  		# flash message is not working... Fix it
   		flash[:payslip_error] = "Payslip not found!"
   		redirect_to(:controller=>'payslips',:action=>'index')
 
@@ -41,17 +36,22 @@ class PayslipsController < ApplicationController
 
   		@payslip=Payslip.where("emp_no = ? AND month = ? AND year = ?",session[:show_emp_no],session[:show_month],session[:show_year]).first
   		@payslip_total=@payslip.basic.to_f + @payslip.conveyance.to_f + @payslip.medical.to_f + @payslip.hra.to_f +  @payslip.bonus.to_f + @payslip.lta.to_f + @payslip.fuel.to_f + @payslip.mobile.to_f - @payslip.loan.to_f -  @payslip.advance.to_f- @payslip.tds.to_f
-    	#@filename = 'my_payslip.pdf'
+
   	end
 
-    #@payslip_total=@payslip.basic.to_f + @payslip.conveyance.to_f + @payslip.medical.to_f + @payslip.hra.to_f +  @payslip.bonus.to_f + @payslip.lta.to_f + @payslip.fuel.to_f + @payslip.mobile.to_f - @payslip.loan.to_f -  @payslip.advance.to_f- @payslip.tds.to_f
-    
-    # render plain: @payslip.inspect  
   end
 
   def import
-    Payslip.import(params[:file])
-    redirect_to root_url, notice: "PaySlip has been imported."
+
+  end
+
+  def import_payslip
+    begin
+      Payslip.import(params[:file])
+      redirect_to(:controller=>'payslips',:action=>'import', notice: "PaySlip has been imported.")
+    rescue
+      redirect_to(:controller=>'payslips',:action=>'import', notice: "Invalid CSV file format.")
+    end
   end
 
 end
