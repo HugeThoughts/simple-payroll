@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
 
-  get 'payslips/index'
+  get 'payslips/payslip'
 
-  get 'payslips/show'
+  get 'payslips/index'
 
   root 'payslips#index'
 

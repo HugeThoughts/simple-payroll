@@ -1,3 +1,4 @@
+
 class PayslipsController < ApplicationController
 
 	before_action :authenticate_user! #, :except => [:index]
@@ -11,11 +12,11 @@ class PayslipsController < ApplicationController
   def show_POST
   	session[:month]=params[:show_payslip][:month]
     session[:year]=params[:show_payslip][:year]
-    redirect_to(:controller=>'payslips',:action=>'show') 
+    redirect_to(:controller=>'payslips',:action=>'payslip') 
 
   end
 
-  def show
+  def payslip
 
 
   	if current_user
