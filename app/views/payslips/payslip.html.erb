@@ -77,4 +77,5 @@
 
 
 <%= link_to "PRINT", '#', onclick: "printpage()" %>
+<%= button_to "Download PDF", payslips_payslip_path(:format => 'pdf'), :class => "button", :method => :get  %>
 

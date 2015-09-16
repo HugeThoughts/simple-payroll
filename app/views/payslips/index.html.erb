@@ -23,7 +23,7 @@
     <% end %>
 
 <% else %>
-
+    <!-- If he is NOT Admin -->
     <p>Select Month And Year to View PaySlip </p>
       <% #if flash[:payslip_error] %>
         <div class="notice"><%= flash[:payslip_error] %></div>
@@ -38,6 +38,8 @@
                             <%= f.label :Year %><br>
                             <%= f.select :year, options_for_select([["2015", "2015"]]) %>
                 </p>
+                            <%= f.hidden_field :emp_no, :value => @currentEmp %>
+
                 <p>
                             <%= f.submit 'Show PaySlip' %>
                 </p>

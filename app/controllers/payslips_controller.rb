@@ -7,39 +7,35 @@ class PayslipsController < ApplicationController
   	if current_user
      emp = Employee.where(:email=>current_user.email).first
      @isAdmin=emp.isAdmin
+     @currentEmp=emp.emp_no
      #render json: @emp_no.inspect  
    	end 
   end
 
-  def show_POST
-
-
-  	session[:month]=params[:show_payslip][:month]
-    session[:year]=params[:show_payslip][:year]
-    redirect_to(:controller=>'payslips',:action=>'payslip') 
+  def show_payslip
+  	session[:show_emp_no]=params[:show_payslip][:emp_no]  
+   	session[:show_month]=params[:show_payslip][:month]
+  	session[:show_year]=params[:show_payslip][:year]
+  	redirect_to(:controller=>'payslips',:action=>'payslip')
 
   end
+
 
   def payslip
 
 
-  	if current_user
-     emp = Employee.where(:email=>current_user.email).first
-     @emp_no=emp.emp_no
-     #render json: @emp_no.inspect  
-   	end
-
-   	@show_month=session[:month]
-  	@show_year=session[:year]
-  	@payslip_count = Payslip.where("emp_no = ? AND month = ? AND year = ?",@emp_no,session[:month],session[:year]).first
+  	# render :json=> show_year
+  	# return 
+  	@payslip_count = Payslip.where("emp_no = ? AND month = ? AND year = ?",session[:show_emp_no],session[:show_month],session[:show_year]).first
   	
   	if @payslip_count.blank?
   		# flash message is not working... Fix it
-  		redirect_to(:controller=>'payslips',:action=>'index', :flash => { :error => "Payslip not found!" })
+  		redirect_to(:controller=>'payslips',:action=>'index', :flash => { :payslip_error => "Payslip not found!" })
 
   		
   	else
-  		@payslip=Payslip.where("emp_no = ? AND month = ? AND year = ?",@emp_no,session[:month],session[:year]).first
+
+  		@payslip=Payslip.where("emp_no = ? AND month = ? AND year = ?",session[:show_emp_no],session[:show_month],session[:show_year]).first
   		@payslip_total=@payslip.basic.to_f + @payslip.conveyance.to_f + @payslip.medical.to_f + @payslip.hra.to_f +  @payslip.bonus.to_f + @payslip.lta.to_f + @payslip.fuel.to_f + @payslip.mobile.to_f - @payslip.loan.to_f -  @payslip.advance.to_f- @payslip.tds.to_f
     	#@filename = 'my_payslip.pdf'
   	end
