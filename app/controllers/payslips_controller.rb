@@ -1,15 +1,19 @@
 
 class PayslipsController < ApplicationController
 
-	before_action :authenticate_user! #, :except => [:index]
+	before_action :authenticate_user!
   def index
-
-
-   	  #@payslip_total=@payslip.basic.to_f + @payslip.conveyance.to_f + @payslip.medical.to_f + @payslip.hra.to_f +  @payslip.bonus.to_f + @payslip.lta.to_f + @payslip.fuel.to_f + @payslip.mobile.to_f - @payslip.loan.to_f -  @payslip.advance.to_f- @payslip.tds.to_f
-     # render plain: @payslip.inspect  
+	@emp_array = Employee.all.map { |emp| [emp.name, emp.emp_no] }
+  	if current_user
+     emp = Employee.where(:email=>current_user.email).first
+     @isAdmin=emp.isAdmin
+     #render json: @emp_no.inspect  
+   	end 
   end
 
   def show_POST
+
+
   	session[:month]=params[:show_payslip][:month]
     session[:year]=params[:show_payslip][:year]
     redirect_to(:controller=>'payslips',:action=>'payslip') 
