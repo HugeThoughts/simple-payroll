@@ -36,7 +36,7 @@ class PayslipsController < ApplicationController
   	else
   		@payslip=Payslip.where("emp_no = ? AND month = ? AND year = ?",@emp_no,session[:month],session[:year]).first
   		@payslip_total=@payslip.basic.to_f + @payslip.conveyance.to_f + @payslip.medical.to_f + @payslip.hra.to_f +  @payslip.bonus.to_f + @payslip.lta.to_f + @payslip.fuel.to_f + @payslip.mobile.to_f - @payslip.loan.to_f -  @payslip.advance.to_f- @payslip.tds.to_f
-    
+    	#@filename = 'my_payslip.pdf'
   	end
 
     #@payslip_total=@payslip.basic.to_f + @payslip.conveyance.to_f + @payslip.medical.to_f + @payslip.hra.to_f +  @payslip.bonus.to_f + @payslip.lta.to_f + @payslip.fuel.to_f + @payslip.mobile.to_f - @payslip.loan.to_f -  @payslip.advance.to_f- @payslip.tds.to_f
