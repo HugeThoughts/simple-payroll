@@ -4,15 +4,18 @@ class PayslipsController < ApplicationController
 	before_action :authenticate_user!
   def index
 	@emp_array = Employee.all.map { |emp| [emp.name, emp.emp_no] }
+	@month_array = [["January", "1"], ["February", "2"], ["March", "3"],["April", "4"], ["May", "5"], ["June", "6"], ["July", "7"], ["August", "8"], ["September", "9"], ["October", "10"], ["November", "11"], ["December", "12"]]
+  	@year_array = [["2015", "2015"]]
   	if current_user
      emp = Employee.where(:email=>current_user.email).first
      @isAdmin=emp.isAdmin
-     @currentEmp=emp.emp_no
+     @currentEmpNo=emp.emp_no
      #render json: @emp_no.inspect  
    	end 
   end
 
   def show_payslip
+    
   	session[:show_emp_no]=params[:show_payslip][:emp_no]  
    	session[:show_month]=params[:show_payslip][:month]
   	session[:show_year]=params[:show_payslip][:year]
@@ -30,7 +33,8 @@ class PayslipsController < ApplicationController
   	
   	if @payslip_count.blank?
   		# flash message is not working... Fix it
-  		redirect_to(:controller=>'payslips',:action=>'index', :flash => { :payslip_error => "Payslip not found!" })
+  		flash[:payslip_error] = "Payslip not found!"
+  		redirect_to(:controller=>'payslips',:action=>'index')
 
   		
   	else

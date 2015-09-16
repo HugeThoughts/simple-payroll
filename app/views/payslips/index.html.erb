@@ -1,50 +1,31 @@
-<% if @isAdmin %>
+<%= flash[:payslip_error] %>
 
-    <p>Select Month And Year to View PaySlip </p>
-      <% #if flash[:payslip_error] %>
-        <div class="notice"><%= flash[:payslip_error] %></div>
-      <% #end %>
-    <%= form_for :show_payslip  do |f| %>
-                <p>
-                             <%= f.label :emp_no %><br>
-                            <%= f.select :emp_no, options_for_select(@emp_array) %><br>
+<p>Select Month And Year to View PaySlip </p>
 
-                            <%= f.label :Month %><br>
-                            <%= f.select :month, options_for_select([["January", "1"], ["February", "2"], ["March", "3"],["April", "4"], ["May", "5"], ["June", "6"], ["July", "7"], ["August", "8"], ["September", "9"], ["October", "10"], ["November", "11"], ["December", "12"]]) %>
 
-                </p>
-                <p>
-                            <%= f.label :Year %><br>
-                            <%= f.select :year, options_for_select([["2015", "2015"]]) %>
-                </p>
-                <p>
-                            <%= f.submit 'Show PaySlip' %>
-                </p>
+<%= form_for :show_payslip  do |f| %>
+    
+    <% if @isAdmin %>
+        <%= f.label :Name %><br>
+        <%= f.select :emp_no, options_for_select(@emp_array) %><br>
+    <% else %>
+        <%= f.hidden_field :emp_no, :value => @currentEmpNo %>
     <% end %>
 
-<% else %>
-    <!-- If he is NOT Admin -->
-    <p>Select Month And Year to View PaySlip </p>
-      <% #if flash[:payslip_error] %>
-        <div class="notice"><%= flash[:payslip_error] %></div>
-      <% #end %>
-    <%= form_for :show_payslip  do |f| %>
-                <p>
-                            <%= f.label :Month %><br>
-                            <%= f.select :month, options_for_select([["January", "1"], ["February", "2"], ["March", "3"],["April", "4"], ["May", "5"], ["June", "6"], ["July", "7"], ["August", "8"], ["September", "9"], ["October", "10"], ["November", "11"], ["December", "12"]]) %>
+    <p>
+                <%= f.label :Month %><br>
+                <%= f.select :month, options_for_select(@month_array) %>
 
-                </p>
-                <p>
-                            <%= f.label :Year %><br>
-                            <%= f.select :year, options_for_select([["2015", "2015"]]) %>
-                </p>
-                            <%= f.hidden_field :emp_no, :value => @currentEmp %>
+    </p>
+    
+    <p>
+                <%= f.label :Year %><br>
+                <%= f.select :year, options_for_select(@year_array) %>
+    </p>
 
-                <p>
-                            <%= f.submit 'Show PaySlip' %>
-                </p>
-    <% end %>
-
+    <p>
+                <%= f.submit 'Show PaySlip' %>
+    </p>
 <% end %>
 
 
