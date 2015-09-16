@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
 
 
-  get 'payslips/payslip'
+  #get 'payslips/payslip'
 
-  get 'payslips/index'
+  #get 'payslips/index'
+
+
+  resources :payslips do
+    collection { post :import }
+  end
 
   root 'payslips#index'
 

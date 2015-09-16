@@ -49,4 +49,9 @@ class PayslipsController < ApplicationController
     # render plain: @payslip.inspect  
   end
 
+  def import
+    Payslip.import(params[:file])
+    redirect_to root_url, notice: "PaySlip has been imported."
+  end
+
 end
